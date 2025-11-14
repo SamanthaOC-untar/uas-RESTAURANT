@@ -4,6 +4,7 @@ import 'package:restaurant1/components/button.dart';
 import 'package:restaurant1/themes/colors.dart';
 import 'package:restaurant1/models/food.dart';
 import 'package:restaurant1/components/food_tile.dart';
+import 'package:restaurant1/pages/food_details_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -31,6 +32,17 @@ class _MenuPageState extends State<MenuPage> {
       rating: "4.3",
       ),
   ];
+
+
+// navigate to foof item details page
+void navigateToFoodDetails(int index) {
+  Navigator.push(context, 
+  MaterialPageRoute(builder: (context) => FoodDetailsPage(
+    food: foodMenu[index],
+  ),
+  ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +151,7 @@ class _MenuPageState extends State<MenuPage> {
               itemCount: foodMenu.length,
               itemBuilder: (context, index) => FoodTile(
                 food: foodMenu[index],
+                onTap: () => navigateToFoodDetails(index),
               ),
             ),
           ),
