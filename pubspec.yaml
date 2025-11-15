@@ -64,6 +64,7 @@ flutter:
     - lib/images/sushi2.png
     - lib/images/sushi3.png
     - lib/images/sushi4.png
+    - lib/images/blastblast.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
