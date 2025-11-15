@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant1/components/button.dart';
+import 'package:restaurant1/models/shop.dart';
 import 'package:restaurant1/themes/colors.dart';
-import 'package:restaurant1/models/food.dart';
+// import 'package:restaurant1/models/food.dart';
 import 'package:restaurant1/components/food_tile.dart';
 import 'package:restaurant1/pages/food_details_page.dart';
 
@@ -14,51 +16,39 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  // food menu
-  List foodMenu =[
-    // salmon sushi
-    Food(
-      name: "Salmon Sushi",
-      price : "21.00",
-      imagePath: "lib/images/sushi2.png",
-      rating: "4.9",
+  // navigate to foof item details page
+  void navigateToFoodDetails(int index) {
+    //get the shop and its menu
+    final shop = context.read<Shop>();
+    final foodMenu = shop.foodMenu;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FoodDetailsPage(food: foodMenu[index]),
       ),
-
-    // tuna
-    Food(
-      name: "Tuna",
-      price : "23.00",
-      imagePath: "lib/images/sushi3.png",
-      rating: "4.3",
-      ),
-  ];
-
-
-// navigate to foof item details page
-void navigateToFoodDetails(int index) {
-  Navigator.push(context, 
-  MaterialPageRoute(builder: (context) => FoodDetailsPage(
-    food: foodMenu[index],
-  ),
-  ),
-  );
-}
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    //get the shop and its menu
+    final shop = context.read<Shop>();
+    final foodMenu = shop.foodMenu;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey[800],
         elevation: 0,
-        leading: Icon(
-          Icons.menu,
-          color: Colors.grey[900],
-        ),
-        title: Text(
-          'Tokyo',
-          style: TextStyle(color: Colors.grey[900]),
-        ),
+        leading: const Icon(Icons.menu),
+        title: const Text('Tokyo'),
+        actions: [
+          //cart button
+          IconButton(onPressed: (){
+            Navigator.pushNamed(context, '/cartpage');
+          }, icon: const Icon(Icons.shopping_cart))
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +57,7 @@ void navigateToFoodDetails(int index) {
           Container(
             decoration: BoxDecoration(
               color: primaryColor,
-              borderRadius: BorderRadius.circular(20)
+              borderRadius: BorderRadius.circular(20),
             ),
             margin: const EdgeInsets.symmetric(horizontal: 25),
             padding: EdgeInsets.symmetric(vertical: 25, horizontal: 30),
@@ -89,17 +79,12 @@ void navigateToFoodDetails(int index) {
                     const SizedBox(height: 20),
 
                     // redeem button
-                    MyButton(
-                      text: "Redeem",
-                      onTap: () {},
-                    ),
+                    MyButton(text: "Redeem", onTap: () {}),
                   ],
                 ),
 
                 // image
-                Image.asset('lib/images/sushi1.png',
-                  height: 100,
-                )
+                Image.asset('lib/images/sushi1.png', height: 100),
               ],
             ),
           ),
@@ -172,10 +157,7 @@ void navigateToFoodDetails(int index) {
                 Row(
                   children: [
                     // image
-                    Image.asset(
-                      'lib/images/sushi4.png',
-                      height: 60,
-                    ),
+                    Image.asset('lib/images/sushi4.png', height: 60),
 
                     const SizedBox(width: 20),
 
@@ -209,9 +191,9 @@ void navigateToFoodDetails(int index) {
                 ),
               ],
             ),
-          )
+          ),
         ],
-      ),   
+      ),
     );
   }
 }

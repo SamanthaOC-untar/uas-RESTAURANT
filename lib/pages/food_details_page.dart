@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant1/components/button.dart';
+import 'package:restaurant1/models/shop.dart';
 import 'package:restaurant1/themes/colors.dart';
 import '../models/food.dart';
 
@@ -19,7 +21,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
 
   void decrementQuantity() {
     setState(() {
-      quantityCount--;
+      if (quantityCount > 0) {
+        quantityCount--;
+      }
     });
   }
 
@@ -31,7 +35,42 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
     });
   }
 
-  void addToCart() {}
+  void addToCart() {
+    //only add to cart if quantity is more than 0
+    if (quantityCount > 0) {
+      //get access to the shop
+      final shop = context.read<Shop>();
+
+      // add to cart
+      shop.addToCart(widget.food, quantityCount);
+
+      //show confirmation message
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          backgroundColor: primaryColor,
+          content: Text("Successfully added $quantityCount ${widget.food.name}(s) to cart!", 
+            style: const TextStyle(
+              color: Colors.white,),
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            //okay button
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+
+                //again
+                Navigator.pop(context);
+
+              },
+              icon: const Icon(Icons.done, color: Colors.white),
+            )
+        ]
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context){
