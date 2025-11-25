@@ -24,6 +24,8 @@ class Shop extends ChangeNotifier {
   //customer cart
   List<Food> _cart = [];
 
+  int get cartItemCount => _cart.length;
+
   //getter methods
   List<Food> get foodMenu => _foodMenu;
   List<Food> get cart => _cart;
@@ -42,4 +44,8 @@ class Shop extends ChangeNotifier {
     notifyListeners();
   }
   
+  void clearCart() {
+    _cart.clear();
+    notifyListeners();
+  }
 }

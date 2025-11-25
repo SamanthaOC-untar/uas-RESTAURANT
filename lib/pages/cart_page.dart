@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant1/components/button.dart';
 import 'package:restaurant1/models/shop.dart';
+import 'package:restaurant1/pages/order_summary_page.dart';
 import 'package:restaurant1/themes/colors.dart';
 import '../models/food.dart';
 
@@ -21,9 +22,15 @@ class CartPage extends StatelessWidget {
       builder: (context, value, child) => Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
-          title: const Text('Cart Page'),
+          title: const Text(
+            'Cart Page',
+            style: TextStyle(color: Colors.white),
+          ),
           elevation: 0,
           backgroundColor: primaryColor,
+          iconTheme: const IconThemeData(
+            color: Colors.white,
+          ),
         ),
         body: Column(
           children: [
@@ -68,13 +75,21 @@ class CartPage extends StatelessWidget {
               ),
             ),
             //PAY BUTTON
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: MyButton(text: "Order Now", 
-              onTap: () {
-                // Implement payment functionality here
-              },),
-            )
+            if(value.cart.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: MyButton(text: "Order Now", 
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OrderSummaryPage(
+                        orderedItems: List.from(value.cart),
+                      ),
+                    ),
+                  );
+                },),
+              )
           ],
         )
     )

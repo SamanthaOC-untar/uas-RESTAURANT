@@ -7,6 +7,7 @@ import 'package:restaurant1/themes/colors.dart';
 // import 'package:restaurant1/models/food.dart';
 import 'package:restaurant1/components/food_tile.dart';
 import 'package:restaurant1/pages/food_details_page.dart';
+import 'package:badges/badges.dart' as badges;
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -44,10 +45,32 @@ class _MenuPageState extends State<MenuPage> {
         leading: const Icon(Icons.menu),
         title: const Text('Tokyo'),
         actions: [
-          //cart button
-          IconButton(onPressed: (){
-            Navigator.pushNamed(context, '/cartpage');
-          }, icon: const Icon(Icons.shopping_cart))
+          Consumer<Shop>(
+            builder: (context, shop, child) {
+              return badges.Badge(
+                badgeContent: Text(
+                  '${shop.cartItemCount}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                showBadge: shop.cartItemCount > 0,
+                badgeStyle: badges.BadgeStyle(
+                  badgeColor: Colors.red,
+                  padding: const EdgeInsets.all(6),
+                ),
+                position: badges.BadgePosition.topEnd(top: 0, end: 3),
+                child: IconButton(
+                  onPressed: (){
+                    Navigator.pushNamed(context, '/cartpage');
+                  }, 
+                  icon: const Icon(Icons.shopping_cart),
+                  ),
+                );
+            },
+          ),
         ],
       ),
       body: Column(
