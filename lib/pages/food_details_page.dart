@@ -15,8 +15,7 @@ class FoodDetailsPage extends StatefulWidget {
   State<FoodDetailsPage> createState() => _FoodDetailsPageState();
 }
 
-class _FoodDetailsPageState extends State<FoodDetailsPage>{
-
+class _FoodDetailsPageState extends State<FoodDetailsPage> {
   int quantityCount = 0;
 
   void decrementQuantity() {
@@ -50,9 +49,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
         barrierDismissible: false,
         builder: (context) => AlertDialog(
           backgroundColor: primaryColor,
-          content: Text("Successfully added $quantityCount ${widget.food.name}(s) to cart!", 
-            style: const TextStyle(
-              color: Colors.white,),
+          content: Text(
+            "Successfully added $quantityCount ${widget.food.name}(s) to cart!",
+            style: const TextStyle(color: Colors.white),
             textAlign: TextAlign.center,
           ),
           actions: [
@@ -63,17 +62,17 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
 
                 //again
                 Navigator.pop(context);
-
               },
               icon: const Icon(Icons.done, color: Colors.white),
-            )
-        ]
-      ));
+            ),
+          ],
+        ),
+      );
     }
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -87,22 +86,16 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: ListView(
                 children: [
-                  Image.asset(
-                    widget.food.imagePath,
-                    height: 200,
-                  ),
-              
+                  Image.asset(widget.food.imagePath, height: 200),
+
                   const SizedBox(height: 25),
-              
+
                   Row(
                     children: [
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow[800],
-                      ),
-              
+                      Icon(Icons.star, color: Colors.yellow[800]),
+
                       const SizedBox(height: 5),
-              
+
                       Text(
                         widget.food.rating,
                         style: TextStyle(
@@ -134,7 +127,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
                   const SizedBox(height: 10),
 
                   Text(
-                    "Delicately sliced, fresh Atlantic salmon drapes elegeantly over a pillow of vinegared rice, garnished with a touch of wasabi and served with soy sauce for dipping. A classic and beloved choice for sushi enthusiasts.",
+                    widget.food.description,
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 14,
@@ -157,9 +150,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
                     Text(
                       "\$${widget.food.price}",
                       style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
 
@@ -171,10 +164,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
-                            icon: const Icon(
-                              Icons.remove, 
-                              color: Colors.white
-                            ),
+                            icon: const Icon(Icons.remove, color: Colors.white),
                             onPressed: decrementQuantity,
                           ),
                         ),
@@ -183,7 +173,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
                           width: 40,
                           child: Center(
                             child: Text(
-                              quantityCount.toString(), 
+                              quantityCount.toString(),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -199,10 +189,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage>{
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
-                            icon: const Icon(
-                              Icons.add, 
-                              color: Colors.white
-                            ),
+                            icon: const Icon(Icons.add, color: Colors.white),
                             onPressed: incrementQuantity,
                           ),
                         ),
