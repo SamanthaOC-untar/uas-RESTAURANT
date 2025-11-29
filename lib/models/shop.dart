@@ -5,20 +5,68 @@ class Shop extends ChangeNotifier {
 
   final List<Food> _foodMenu = [
   // food menu
-    // salmon sushi
+    // salmon 
     Food(
       name: "Salmon Sushi",
-      price: "21.00",
-      imagePath: "lib/images/sushi2.png",
+      price: "2.00",
+      imagePath: "lib/images/sushi1.png",
       rating: "4.9",
     ),
 
     // tuna
     Food(
-      name: "Tuna",
-      price: "23.00",
-      imagePath: "lib/images/sushi3.png",
+      name: "Tuna Sushi",
+      price: "3.00",
+      imagePath: "lib/images/sushi2.png",
       rating: "4.3",
+    ),
+
+    // belut
+    Food(
+      name: "Unagi Sushi",
+      price: "3.00",
+      imagePath: "lib/images/sushi5.png",
+      rating: "4.0",
+    ),
+
+    // kepiting
+    Food(
+      name: "Kani Sushi",
+      price: "1.00",
+      imagePath: "lib/images/sushi6.png",
+      rating: "3.9",
+    ),
+
+    // gurita
+    Food(
+      name: "Ika Sushi",
+      price: "4.00",
+      imagePath: "lib/images/sushi7.png",
+      rating: "4.3",
+    ),
+
+    // rumput laut
+    Food(
+      name: "Chuka Wakame",
+      price: "1.00",
+      imagePath: "lib/images/sushi8.png",
+      rating: "3.7",
+    ),
+
+    // bulu b2
+    Food(
+      name: "Uni Sushi",
+      price: "5.00",
+      imagePath: "lib/images/sushi9.png",
+      rating: "4.5",
+    ),
+
+    // makarel
+    Food(
+      name: "Saba Sushi",
+      price: "2.00",
+      imagePath: "lib/images/sushi10.png",
+      rating: "4.0",
     ),
   ];
   //customer cart

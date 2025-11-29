@@ -17,7 +17,7 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  // navigate to foof item details page
+  // navigate to food item details page
   void navigateToFoodDetails(int index) {
     //get the shop and its menu
     final shop = context.read<Shop>();
@@ -107,7 +107,7 @@ class _MenuPageState extends State<MenuPage> {
                 ),
 
                 // image
-                Image.asset('lib/images/sushi1.png', height: 100),
+                Image.asset('lib/images/sushi4.png', height: 100),
               ],
             ),
           ),
@@ -180,7 +180,7 @@ class _MenuPageState extends State<MenuPage> {
                 Row(
                   children: [
                     // image
-                    Image.asset('lib/images/sushi4.png', height: 60),
+                    Image.asset('lib/images/sushi3.png', height: 60),
 
                     const SizedBox(width: 20),
 
@@ -190,7 +190,7 @@ class _MenuPageState extends State<MenuPage> {
                       children: [
                         // name
                         Text(
-                          "Salmon Eggs",
+                          "Salmon Egg Sushi",
                           style: GoogleFonts.dmSerifDisplay(fontSize: 18),
                         ),
 
@@ -198,7 +198,7 @@ class _MenuPageState extends State<MenuPage> {
 
                         // price
                         Text(
-                          '\$21.00',
+                          '\$2.00',
                           style: TextStyle(color: Colors.grey[700]),
                         ),
                       ],
